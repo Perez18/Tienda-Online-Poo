@@ -1,0 +1,15 @@
+<ifModule mod_rewrite.c>
+
+#Activar mod_rewrite
+RewriteEngine On
+ErrorDocument 404 http://localhost/proyecto%20poo/error2
+
+
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+
+#REGLA DE ESCRITURA
+RewriteRule ^(.*)/(.*) index.php?controlador=$1&action=$2
+</ifModule>
