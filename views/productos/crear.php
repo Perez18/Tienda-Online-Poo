@@ -8,6 +8,7 @@
     <?php $url_action = base_url."producto/save";?>
 <?php endif;?>
 
+
 <?php  if(isset($_SESSION['producto']) && $_SESSION['producto'] == 'complete' ):?>
     <h4 class="alert_green"><strong>Categoria creada de forma correcta</strong></h4>
 

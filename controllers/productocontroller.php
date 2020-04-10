@@ -80,6 +80,8 @@ class productocontroller
           $producto->setimagen($filename);
         }
         $save = $producto->save();
+
+ 
         if ($save) {
 
           $_SESSION['producto'] = 'complete';
@@ -98,6 +100,7 @@ class productocontroller
     header("location:" . base_url . 'producto/crear');
   }
 
+  
 
   public function editar()
   {
@@ -112,6 +115,7 @@ class productocontroller
 
     require_once 'views/productos/crear.php';
   }
+
 
 
   public function eliminar()

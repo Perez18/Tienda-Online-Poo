@@ -129,7 +129,7 @@ class producto
 
     public function getall(){
 
-        $consulta  = $this->DB->query("SELECT * FROM PRODUCTOS ORDER BY id DESC");
+        $consulta  = $this->DB->query("SELECT * FROM productos ORDER BY id DESC");
 
         $respuesta = false;
           
@@ -141,9 +141,11 @@ class producto
         return $respuesta;
 
     }
+
+
     public function getone(){
 
-    $consulta  = $this->DB->query("SELECT * FROM PRODUCTOS WHERE id ={$this->getid()}");
+    $consulta  = $this->DB->query("SELECT * FROM productos WHERE id ={$this->getid()}");
     $producto = $consulta->fetch_object();
 
         $respuesta = false;
@@ -162,11 +164,12 @@ class producto
     public function save(){
         $save = false;
 
-        $sql = "INSERT INTO PRODUCTOS(id,categoria_id,nombre,descripcion,precio,stock,oferta,fecha_registro,imagen)
+        $sql = "INSERT INTO productos(id,categoria_id,nombre,descripcion,precio,stock,oferta,fecha_registro,imagen)
                 VALUES(NULL,{$this->getcategoria_id()},'{$this->getnombre()}','{$this->getdescripcion()}',{$this->getprecio()},
                 {$this->getstock()},'{$this->getoferta()}',CURDATE(),'{$this->getimagen()}' )";
         $resultado  = $this->DB->query($sql);
 
+      
 
         if($resultado){  
 
@@ -177,11 +180,14 @@ class producto
 
     }
 
+
+
+
     public function eliminar(){
 
         helpers::isadmin();
 
-        $sql = "DELETE FROM PRODUCTOS WHERE id = {$this->getid()}";
+        $sql = "DELETE FROM productos WHERE id = {$this->getid()}";
         $result  = $this->DB->query($sql);
 
         $eliminar = false;

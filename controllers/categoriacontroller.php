@@ -23,6 +23,7 @@ class categoriacontroller
       require_once 'views/categorias/crear.php';
    }
 
+   
    public function save()
    {
 

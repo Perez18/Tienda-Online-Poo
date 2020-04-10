@@ -34,7 +34,7 @@ class categoria
 
      public function getcategorias()
     {
-        $sql = "SELECT * FROM CATEGORIAS ORDER BY id DESC";
+        $sql = "SELECT * FROM categorias ORDER BY id DESC";
         $consulta = $this->DB->query($sql);
 
         return $consulta;
@@ -45,7 +45,7 @@ class categoria
        
         $save = false;
 
-        $sql =  "INSERT INTO CATEGORIAS(id,nombre) VALUES(NULL,'{$this->getnombre()}')" ;
+        $sql =  "INSERT INTO categorias(id,nombre) VALUES(NULL,'{$this->getnombre()}')" ;
         $result = $this->DB->query($sql);
 
         if($result){

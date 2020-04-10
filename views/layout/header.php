@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=base_url?>assets/css/styles.css">
-    <title>Document</title>
+    <title>Projecto 1</title>
 </head>
 
 <body>

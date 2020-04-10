@@ -10,7 +10,8 @@ Mira **Deployment** ara conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-servidor web local , php
+Servidor Web  
+PHP7
 ```
 
 

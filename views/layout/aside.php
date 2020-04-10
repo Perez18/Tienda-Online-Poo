@@ -25,7 +25,7 @@
 
             <?php if (isset($_SESSION['identify'])) : ?>
                 <li><a href="#">Mis Pedididos</a></li>
-                <li><a href="<?= base_url ?>usuario/logout">Cerrar Session</a></li>
+                <li><a href="<?= base_url?>usuario/logout">Cerrar Session</a></li>
             <?php else: ?>
                 <li><a href="<?=base_url?>usuario/registro">Registrate</a></li>
             <?php endif; ?>
