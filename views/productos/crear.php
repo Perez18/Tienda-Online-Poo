@@ -27,24 +27,35 @@
         <?php  $categoriasall =  helpers::showcategorias() ?>
         <option value=""></option>
         <?php while($cate = $categoriasall->fetch_object()):?>
-        <option value="<?=$cate->id?>"><?=$cate->nombre?></option>
+        <option value="<?=$cate->id?>" <?=isset($pro) && is_object($pro) && $cate->id == $pro->categoria_id ? 'selected' : '' ?>> 
+            
+           <?=$cate->nombre?>
+
+         </option>
         <?php endwhile; ?>
-</select>
+</select> 
 
 <label for="nombre">Nombre De Producto</label>
 <input type="text" name="nombre"  value="<?=isset($pro) && is_object($pro) ? $pro->nombre : ''  ?>">
 
 <label for="precio">Precio De Producto</label>
-<input type="number" name="precio" >
+<input type="number" name="precio" value="<?=isset($pro) && is_object($pro) ? $pro->precio : ''  ?>">
 
 <label for="stock">Stock</label>
-<input type="number" name="stock"  >
+<input type="number" name="stock" value="<?=isset($pro) && is_object($pro) ? $pro->stock : ''  ?>" >
 
 <label for="oferta">Oferta</label>
-<input type="number" name="oferta">
+<input type="number" name="oferta" value="<?=isset($pro) && is_object($pro) ? $pro->oferta : ''  ?>">
 
 <label for="descpricion">Descripcion</label>
-<textarea name="descripcion" id="" cols="20" rows="9"></textarea>
+<textarea name="descripcion" id="" cols="20" rows="9">
+<?=isset($pro) && is_object($pro) ? $pro->descripcion : ''  ?>
+</textarea>
+
+<label for="imagen">Imagen</label>
+<?php if(isset($pro) && is_object($pro) && !empty($pro->imagen)): ?>
+   <img src="<?=base_url?>upload/imagenes<?=$pro->imagen?>" class="thumb" >
+<?php endif; ?>
 
 <input type="file" name="imagen" id="" >
 
