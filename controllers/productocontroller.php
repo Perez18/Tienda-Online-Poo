@@ -39,7 +39,10 @@ class productocontroller
 
     if (isset($_POST)) {
 
-      var_dump($_POST);
+     // var_dump($_POST);
+      var_dump($_FILES);
+       die();
+    
       //validar datos
       $categoria = isset($_POST['categoria']) ? trim($_POST['categoria']) : false;
       $nombre =  isset($_POST['nombre']) ? trim($_POST['nombre']) : false;
@@ -48,7 +51,7 @@ class productocontroller
       $oferta =  isset($_POST['oferta']) ? trim($_POST['oferta']) : false;
       $descipcion = isset($_POST['descripcion']) ? trim($_POST['descripcion']) : false;
 
-      if ($categoria && $nombre && $precio && $stock) {
+      if ($categoria && $nombre && $precio && $stock)  {
 
         //instanciamos la clase
         $producto = new producto();
@@ -66,10 +69,12 @@ class productocontroller
         $mimetype = $file['type'];
         $tmp_name = $file['tmp_name'];
 
+      
+
         if ($mimetype == "image/gif" || $mimetype == "image/jpeg	" || $mimetype == "image/png" || $mimetype == "image/svg+xml") {
 
           //si no existe el directorio , se crea
-          if (!is_dir('upload/imagenes')) {
+          if (!is_dir('upload/imagenes/')) {
 
             mkdir('upload/imagenes', 0777, true);
           }
