@@ -139,7 +139,14 @@ class producto
         }
 
         return $respuesta;
+    }
 
+
+    public function getrandom($limit){
+
+        $consulta = $this->DB->query("SELECT * FROM productos ORDER BY id DESC LIMIT $limit"); 
+
+        return $consulta;
     }
 
 
@@ -179,6 +186,36 @@ class producto
         return $save;
 
     }
+
+    public function edit(){
+        $save = false;
+
+        $sql = "UPDATE productos SET  categoria_id = {$this->getcategoria_id()} , nombre = '{$this->getnombre()}' , descripcion = '{$this->getdescripcion()}',
+                precio = {$this->getprecio()}, stock = {$this->getstock()}, oferta = '{$this->getoferta()}'";
+            
+           if($this->getimagen() != null){
+            
+            $sql .=",imagen = '{$this->getimagen()}' ";
+           
+             }
+        
+
+        $sql .= " WHERE id = {$this->getid()};";
+
+
+        $resultado  = $this->DB->query($sql);
+
+      
+
+        if($resultado){  
+
+            $save = true;
+        }
+
+        return $save;
+
+    }
+
 
 
 

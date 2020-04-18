@@ -2,7 +2,7 @@
 
 <?php  if(isset($editar) && isset($pro) && is_object($pro) ):?>
     <h1>Editar Productos <?=$pro->nombre?> </h1>
-    <?php $url_action = base_url."producto/actualizar&id=$pro->id";?>
+    <?php $url_action = base_url."producto/save&id=$pro->id";?>
 <?php else:?>
     <h1>Creacion de Productos </h1>
     <?php $url_action = base_url."producto/save";?>
@@ -21,7 +21,7 @@
 
 
 
-<form action="<?=$url_action?>" method="post" enctype="multipart/form-data">
+<form action="<?=$url_action?>" method="POST" enctype="multipart/form-data">
 
 <label for="nombre">Categoria</label>
 <select name="categoria" id="" >
@@ -54,11 +54,12 @@
 </textarea>
 
 <label for="imagen">Imagen</label>
+
 <?php if(isset($pro) && is_object($pro) && !empty($pro->imagen)): ?>
-   <img src="<?=base_url?>upload/imagenes<?=$pro->imagen?>" class="thumb" >
+   <img src="<?=base_url?>upload/imagenes/<?=$pro->imagen?>" class="thumb" >
 <?php endif; ?>
 
-<input type="file" name="imagen" id="" >
+<input type="file" name="imagen" id="name" >
 
 <input type="submit" value="enviar">
 

@@ -11,9 +11,14 @@ class productocontroller
 
     // echo  "Controller producto, accion index ";
 
-    //renderizar vista 
+    $destacados = new producto();
 
+    $productos = $destacados->getrandom(5);
+
+
+    //renderizar vista 
     require_once 'views/productos/destacados.php';
+
   }
 
 
@@ -41,7 +46,8 @@ class productocontroller
 
      // var_dump($_POST);
       var_dump($_FILES);
-       die();
+
+//       die();
     
       //validar datos
       $categoria = isset($_POST['categoria']) ? trim($_POST['categoria']) : false;
@@ -63,28 +69,46 @@ class productocontroller
         $producto->setdescripcion($descipcion);
 
         //guardar archivo de imagen
+        
+        if(isset($_FILES['imagen'])){
 
         $file = $_FILES['imagen'];
         $filename = $file['name'];
         $mimetype = $file['type'];
         $tmp_name = $file['tmp_name'];
 
-      
-
-        if ($mimetype == "image/gif" || $mimetype == "image/jpeg	" || $mimetype == "image/png" || $mimetype == "image/svg+xml") {
+  
+        if ($mimetype == "image/gif" || $mimetype == "image/jpeg	" || $mimetype == "image/png" || $mimetype == "image/svg+xml" || 
+         $mimetype = "application/octet-stream") {
 
           //si no existe el directorio , se crea
-          if (!is_dir('upload/imagenes/')) {
+             if (!is_dir("./upload/imagenes")) {
 
-            mkdir('upload/imagenes', 0777, true);
+               mkdir("./upload/imagenes",0755,true);
+
+
+             }
+           
+             // mueve la imagen original a nuestro proyecto en la carpeta creada  
+             move_uploaded_file($tmp_name, './upload/imagenes/'.$filename);
+             $producto->setimagen($filename);
+
           }
+       }
 
-          // mueve la imagen original a nuestro proyecto en la carpeta creada  
-          move_uploaded_file($tmp_name, 'upload/imagenes' . $filename);
+       if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $producto->setid($id);
+        $save = $producto->edit();
 
-          $producto->setimagen($filename);
-        }
+       }else{
+
         $save = $producto->save();
+       
+      }
+
+
+        
 
  
         if ($save) {
