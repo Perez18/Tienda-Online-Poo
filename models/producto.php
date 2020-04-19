@@ -141,10 +141,12 @@ class producto
         return $respuesta;
     }
 
+    
+
 
     public function getrandom($limit){
 
-        $consulta = $this->DB->query("SELECT * FROM productos ORDER BY id DESC LIMIT $limit"); 
+        $consulta = $this->DB->query("SELECT * FROM productos ORDER BY RAND() LIMIT $limit"); 
 
         return $consulta;
     }

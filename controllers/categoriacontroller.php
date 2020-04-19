@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/categoria.php';
+require_once 'models/producto.php';
 
 class categoriacontroller
 {
@@ -24,6 +25,28 @@ class categoriacontroller
    }
 
    
+    public function ver(){
+
+
+         if(isset($_GET['id'])){
+
+
+         //Conseguir categoria
+            $id = $_GET['id'];
+            $categorias = new categoria();
+            $categorias->setid($id);
+            $categoria = $categorias->getone();
+
+         //Conseguir Producto
+         
+
+         }
+
+         require_once 'views/categorias/ver.php';
+
+
+   }
+
    public function save()
    {
 
