@@ -11,6 +11,21 @@ class pedidocontroller {
 
      }
 
+     public function realizar(){
+  
+      require_once 'views/pedidos/realizar.php';
+   }
+   
+   
+   public function add(){
+
+
+      var_dump($_POST);
+      die();
+
+
+   }
+
 
 
 }

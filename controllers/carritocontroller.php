@@ -12,6 +12,7 @@ class carritocontroller {
 
         //var_dump($_SESSION['carrito']);
         $carritos = $_SESSION['carrito'];
+        
 
         require_once 'views/carritos/index.php';
 
@@ -56,6 +57,7 @@ class carritocontroller {
             $producto = new producto();
             $producto->setid($producto_id);
             $producto = $producto->getone();
+
 
 
             if(is_object($producto)){

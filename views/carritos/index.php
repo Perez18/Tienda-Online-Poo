@@ -39,7 +39,7 @@
 <div class="total-carrito">
   <?php $stats = helpers::statscarrito() ?>
   <h3>Total Del Carrito : <?=$stats['precio']?></h3>
-  <a href="" class="button button-pedido">Realizar Pedidos</a>
+  <a href="<?=base_url?>pedido/realizar" class="button button-pedido">Realizar Pedidos</a>
 
 
 </div>
