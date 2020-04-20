@@ -19,9 +19,24 @@ class pedidocontroller {
    
    public function add(){
 
+  
+      if(isset($_SESSION['identify'])){
+ 
+         #Agregar Pedido a la DB
 
-      var_dump($_POST);
-      die();
+         var_dump($_POST);
+
+         die();
+
+
+      }else{
+
+         #Redigir si no existe Session activa
+
+         header("location:".base_url);
+
+
+      }
 
 
    }
