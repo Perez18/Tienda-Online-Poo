@@ -168,6 +168,11 @@ class pedido
         $consulta = $this->DB->query($sql);
         $pedido_id = $consulta->fetch_object()->pedido;
 
+
+        foreach ($variable as $key => $value) {
+            # code...
+        }
+
        
         return $pedido_id;
 
