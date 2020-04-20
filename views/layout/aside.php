@@ -1,6 +1,15 @@
 <!---------- BARRA LATERAL ---------->
 <aside id="lateral">
 
+    <div class="block_aside">
+
+    <h3>Mi Carrito</h3>
+    <?php  $stats =  helpers::statscarrito()?>
+    <li><a href="#">Producto(<?=$stats['count']?>)</a></li>
+    <li><a href="#">Total B/<?=$stats['precio']?> </a></li>
+    <li><a href="<?=base_url?>carrito/index">Ver Carrito</a></li>
+
+    </div>
 
     <div id="login" class="block_aside">
         <?php if (!isset($_SESSION['identify'])) : ?>
@@ -16,11 +25,12 @@
         <?php else : ?>
             <h3><?= $_SESSION['identify']->nombre . '&nbsp' . $_SESSION['identify']->apellidos ?></h3>
         <?php endif ?>
+        
         <ul>
             <?php if (isset($_SESSION['admin'])) : ?>
                 <li><a href="<?= base_url ?>categoria/index">Gestionar Categorias</a></li>
                 <li><a href="<?=base_url?>producto/gestion">Gestionar Productos</a></li>
-                <li><a href="#">Gestionar Pedidos</a></li>
+                <li><a href="<?=base_url?>carrito/index">Gestionar Pedidos</a></li>
             <?php endif; ?>
 
             <?php if (isset($_SESSION['identify'])) : ?>

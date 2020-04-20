@@ -10,7 +10,10 @@ class carritocontroller {
      public function index(){
      
 
-        var_dump($_SESSION['carrito']);
+        //var_dump($_SESSION['carrito']);
+        $carritos = $_SESSION['carrito'];
+
+        require_once 'views/carritos/index.php';
 
      }
 
@@ -25,13 +28,12 @@ class carritocontroller {
           $producto_id = $_GET['id'];
 
           
-
         }else{
 
             header("location:".base_url);
-        }
+        } 
 
-
+      //Aumenta la cantidad de unidades de un producto
         if(isset($_SESSION['carrito'])){
              
             $contador = 0;
@@ -44,12 +46,13 @@ class carritocontroller {
                     $contador++;
                 }                
             }
-
           }
 
+        
+        //cantidad inicial al añadir un producto al carrito
           if(!isset($contador) || $contador == 0 ){
 
-            //Conseguir carrito
+            //Conseguir producto
             $producto = new producto();
             $producto->setid($producto_id);
             $producto = $producto->getone();
@@ -65,10 +68,11 @@ class carritocontroller {
                 "Producto" => $producto
 
                );
-             
              }
+
             }
 
+    
        header("location:".base_url.'carrito/index');
 
      }

@@ -25,15 +25,13 @@
 
 <label for="nombre">Categoria</label>
 <select name="categoria" id="" >
-        <?php  $categoriasall =  helpers::showcategorias() ?>
+    <?php  $categoriasall =  helpers::showcategorias() ?>
         <option value=""></option>
-        <?php while($cate = $categoriasall->fetch_object()):?>
+    <?php while($cate = $categoriasall->fetch_object()):?>
         <option value="<?=$cate->id?>" <?=isset($pro) && is_object($pro) && $cate->id == $pro->categoria_id ? 'selected' : '' ?>> 
-            
-           <?=$cate->nombre?>
-
-         </option>
-        <?php endwhile; ?>
+        <?=$cate->nombre?>
+        </option>
+    <?php endwhile; ?>
 </select> 
 
 <label for="nombre">Nombre De Producto</label>

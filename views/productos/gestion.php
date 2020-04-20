@@ -1,16 +1,15 @@
-<h1>Gestion De Productos</h1>
-<a href="<?=base_url?>producto/crear" class="button button-small">
-Crear producto
-</a>
-<?php  if(isset($_SESSION['eliminar']) && $_SESSION['eliminar'] == 'complete' ):?>
+                                            <h1>Gestion De Productos</h1>
+
+<a href="<?=base_url?>producto/crear" class="button button-small"> Crear producto</a>
+<?php if(isset($_SESSION['eliminar']) && $_SESSION['eliminar'] == 'complete' ):?>
     <h4 class="alert_green"><strong>producto Eliminado</strong></h4>
 
 <?php elseif(isset($_SESSION['eliminar']) && $_SESSION['eliminar'] == 'faild'):?>
-
     <h4 class="alert_red"><strong>Error fallido en eliminacion</strong></h4>
 <?php endif;?>
     
 <?php helpers::delete_session('eliminar') ?>
+
 <table > 
     <thead>
     <tr>
@@ -24,6 +23,7 @@ Crear producto
     </thead>
 
     <tbody>
+
         <?php while($producto = $productos->fetch_object()):?>
       <tr>
           <td><?=$producto->id?></td>

@@ -13,11 +13,13 @@
                     <div class="product">
                         <?php if ($producto->imagen != NULL): ?>
                         <img src="<?=base_url?>upload/imagenes/<?=$producto->imagen?> " alt="camiseta">
+                        <?php else: ?>
+                        <img src="<?=base_url?>assets/img/camiseta.png" alt="camiseta">
                         <?php endif; ?>
 
                         <h2><?=$producto->nombre?></h2>
                         <p>B/<?=$producto->precio ?></p>
-                        <a href="<?=base_url?>carrito/add" class="button" >Comprar</a>
+                        <a href="<?=base_url?>carrito/add&id=<?=$producto->id?>" class="button" >Comprar</a>
                     </div>
                 </a>
 
