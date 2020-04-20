@@ -33,6 +33,24 @@ class productocontroller
     require_once 'views/productos/gestion.php';
   }
 
+   public function ver(){
+
+    if(isset($_GET['id'])){
+      $id = $_GET['id'];
+
+      $producto = new producto();
+      $producto->setid($id);
+      $pro =  $producto->getone();
+
+    }
+
+    require_once 'views/productos/ver.php';
+
+
+   }
+
+
+
   public function crear()
   {
     helpers::isadmin();
@@ -117,32 +135,40 @@ class productocontroller
         } else {
           $_SESSION['producto'] = 'faild';
         }
-      } else {
+          } else {
 
-        $_SESSION['producto'] = 'faild';
-      }
-    } else {
+            $_SESSION['producto'] = 'faild';
+          }
+        } else {
 
-      $_SESSION['producto'] = 'faild';
-    }
+          $_SESSION['producto'] = 'faild';
+        }
 
-    header("location:" . base_url . 'producto/crear');
+        header("location:" . base_url . 'producto/crear');
   }
 
   
 
   public function editar()
   {
-    helpers::isadmin();
+      helpers::isadmin();
+
+    if(isset($_GET['id'])){
+      $id = $_GET['id'];
+      $editar = true;
+      $producto = new producto();
+      $producto->setid($id);
+      $pro =  $producto->getone();
+
+      require_once 'views/productos/crear.php';
+
+    }else{
+
+      header("location".base_url.'producto/gestion');
+
+    }
 
 
-    $id = $_GET['id'];
-    $editar = true;
-    $producto = new producto();
-    $producto->setid($id);
-    $pro =  $producto->getone();
-
-    require_once 'views/productos/crear.php';
   }
 
 
@@ -150,27 +176,27 @@ class productocontroller
   public function eliminar()
   {
 
-    helpers::isadmin();
+        helpers::isadmin();
 
-    if (isset($_GET['id'])) {
+        if (isset($_GET['id'])) {
 
-      $id_producto = isset($_GET['id']) ? $_GET['id'] : false;
-      $producto = new producto();
-      $producto->setid($id_producto);
-      $eliminar =  $producto->eliminar();
+          $id_producto = isset($_GET['id']) ? $_GET['id'] : false;
+          $producto = new producto();
+          $producto->setid($id_producto);
+          $eliminar =  $producto->eliminar();
 
-      if ($eliminar) {
+          if ($eliminar) {
 
-        $_SESSION['eliminar'] = 'complete';
-      } else {
+            $_SESSION['eliminar'] = 'complete';
+          } else {
 
-        $_SESSION['eliminar'] = 'faild';
+            $_SESSION['eliminar'] = 'faild';
+          }
+        } else {
+
+          $_SESSION['eliminar'] = 'faild';
+        }
+
+        header("location:" . base_url . 'producto/gestion');
       }
-    } else {
-
-      $_SESSION['eliminar'] = 'faild';
-    }
-
-    header("location:" . base_url . 'producto/gestion');
-  }
 }

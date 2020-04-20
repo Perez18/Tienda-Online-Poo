@@ -140,9 +140,22 @@ class producto
 
         return $respuesta;
     }
+    
+    
+    public function getallcategoria(){
+
+        $sql= "SELECT p.* , c.nombre AS 'catnombre' from productos p " 
+             ."INNER JOIN categorias c ON p.categoria_id = c.id "
+             ."WHERE p.categoria_id = {$this->getcategoria_id()} "
+             ."ORDER BY id DESC ";
+
+        $consulta = $this->DB->query($sql);
+
+        return $consulta;
+
+    }
 
     
-
 
     public function getrandom($limit){
 
@@ -153,8 +166,8 @@ class producto
 
 
     public function getone(){
-
-    $consulta  = $this->DB->query("SELECT * FROM productos WHERE id ={$this->getid()}");
+        
+    $consulta  = $this->DB->query("SELECT * FROM productos WHERE id = {$this->getid()} ");
     $producto = $consulta->fetch_object();
 
         $respuesta = false;

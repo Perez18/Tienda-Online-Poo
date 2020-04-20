@@ -38,7 +38,9 @@ class categoriacontroller
             $categoria = $categorias->getone();
 
          //Conseguir Producto
-         
+           $productos = new producto();
+           $productos->setcategoria_id($id);
+           $productos =  $productos->getallcategoria();
 
          }
 
