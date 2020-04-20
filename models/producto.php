@@ -232,9 +232,6 @@ class producto
     }
 
 
-
-
-
     public function eliminar(){
 
         helpers::isadmin();
