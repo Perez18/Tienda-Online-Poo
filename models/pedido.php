@@ -140,6 +140,46 @@ class pedido
     
         }
 
+    public function getoneBYuser(){
+ 
+        $sql = "SELECT p.id , p.costo from pedidos p "
+             ."WHERE p.usuario_id = {$this->getusuario_id()} ORDER BY id DESC";
+
+        $consulta  = $this->DB->query($sql);
+        $pedido = $consulta->fetch_object();
+    
+            $respuesta = false;
+              
+            if($consulta){
+    
+                $respuesta = $pedido;
+            }
+    
+            return $respuesta;
+
+    }
+
+    public function getproductoBypedido(){
+
+        $sql = "SELECT p.nombre , p.descripcion FROM lineas_pedidos lp "
+             ."INNER JOIN productos p ON lp.producto_id = p.id "
+             ."WHERE lp.pedido_id = {$this->getid()} ORDER BY id DESC";
+
+            $consulta = $this->DB->query($sql);
+
+            $resultado = false;
+
+            if($consulta){
+
+                $resultado = $consulta;
+
+            }
+
+        return $resultado;
+
+
+    }
+
 
     public function save(){
 
@@ -169,14 +209,28 @@ class pedido
         $pedido_id = $consulta->fetch_object()->pedido;
 
 
-        foreach ($variable as $key => $value) {
-            # code...
+        foreach ($_SESSION['carrito'] as $producto => $valor) {
+            
+            $carrito = $valor['Producto'];
+
+            $sql = "INSERT INTO lineas_pedidos(id,pedido_id,producto_id,unidades)
+            VALUES(NULL,$pedido_id,{$carrito->id},{$_SESSION['carrito'][$producto]['unidades']})";
+
+            $consulta = $this->DB->query($sql); 
+
+            $save = false;
+
+                if($consulta){  
+
+                    $save = true;
+                }
+
         }
 
-       
-        return $pedido_id;
-
+        return $save;
     }
+
+
 
 
 }

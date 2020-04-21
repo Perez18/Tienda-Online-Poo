@@ -126,9 +126,6 @@ class productocontroller
       }
 
 
-        
-
- 
         if ($save) {
 
           $_SESSION['producto'] = 'complete';

@@ -14,10 +14,10 @@
 
          <h1>Pedidos</h1>
   
-         <a href="<?=base_url?>pedido/index">Ver Productos y Precios</a>
-        
-        <br/>
+         <a href="<?=base_url?>pedido/index">Ver Productos y Precios <br> </a>
 
+        <br>
+        
         <h3>Direccion Para El Envio </h3>
         <form action="<?=base_url?>pedido/add" method="post">
          

@@ -40,21 +40,20 @@ class pedidocontroller {
             $Costo_Total =  $stats['precio'];
 
             #Añadir a la DB
-
             $pedido = new pedido();
             $pedido->setusuario_id($usuario_id);
             $pedido->setprovincia($provincia);
             $pedido->setlocalidad($localidad);
             $pedido->setdireccion($direccion);
             $pedido->setcosto($Costo_Total);
-            $save = $pedido->save();
             
-            $pedido_id = $pedido->save_linea();
+            $save = $pedido->save(); 
+            $pedido_linea = $pedido->save_linea();
 
-            var_dump($pedido_id);
-        
+          # var_dump($_SESSION['carrito']);
+
           
-            if($save){
+            if($save && $pedido_linea){
 
                $_SESSION['pedido'] = 'complete';
 
@@ -64,19 +63,15 @@ class pedidocontroller {
 
             }
 
-            var_dump($_SESSION['pedido']);
 
-
-            header("location:".base_url.'pedido/realizar');
-
-            
          }else
          {
 
-            header("location:".base_url);
+            $_SESSION['pedido'] = 'faild';
 
          }
-
+         
+        header("location:".base_url.'pedido/confirmados');
 
        }else{
 
@@ -87,6 +82,32 @@ class pedidocontroller {
 
        }
 
+
+   }
+
+
+   public function confirmados(){
+
+
+      $login = $_SESSION['identify'];
+
+      $usuario_id = $login->id;
+ 
+      #Informacion de pedido segun el usuario logeado
+      $detalle_pedido = new pedido();
+      $detalle_pedido->setusuario_id($usuario_id);
+      $detalles = $detalle_pedido->getoneBYuser();
+
+
+      #productos para detalle
+      $id_pedido = $detalles->id;
+      $detalle_pedido->setid($id_pedido);
+      $productos = $detalle_pedido->getproductoBypedido();
+
+      var_dump($productos);
+
+
+      require_once 'views/pedidos/confirmado.php';
 
    }
 
