@@ -139,8 +139,11 @@ class pedido
 
 
     public function getone(){
+
+        $sql = "SELECT p.*,u.nombre , u.apellidos ,u.email FROM pedidos p " 
+        ."INNER JOIN usuarios u ON p.usuario_id = u.id WHERE p.id = {$this->getid()}";
         
-        $consulta  = $this->DB->query("SELECT * FROM pedidos WHERE id = {$this->getid()} ");
+        $consulta  = $this->DB->query($sql);
         $producto = $consulta->fetch_object();
     
             $respuesta = false;

@@ -25,6 +25,12 @@
    <?php endif; ?>
 
 <br>
+<h3>Detalle De Usuario</h3>
+<p>Usuario: <?=$pedidos->nombre?>&nbsp;<?=$pedidos->apellidos?> </p>
+<p>Email: <?=$pedidos->email?></p>
+
+<br>
+
 <h3>Direccion de Envio</h3>
 <p>Provincia: <?= $pedidos->provincia ?></p>
 <p>Ciudad: <?= $pedidos->localidad ?></p>

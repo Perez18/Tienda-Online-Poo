@@ -1,5 +1,5 @@
 <h1> Mi Carrito </h1>
-<?php if (isset($_SESSION['carrito'])) : ?>
+<?php if (isset($_SESSION['carrito']) && count($_SESSION['carrito'] ) != 0) : ?>
 
   <table>
     <tr>
@@ -30,11 +30,22 @@
 
         <td><a href="<?= base_url ?>producto/ver&id=<?= $producto->id ?>"><?= $producto->nombre ?></a></td>
 
-        <td><?= $producto->precio ?></td>
-        <td><?= $elemento['unidades'] ?></td>
-        <td>    <a href="<?= base_url ?>carrito/remove&indice=<?=$indice?>" class="button button-carrito button-red">Eliminar Producto</a>
-      
-      </td>
+        <td>B/ <?= $producto->precio ?></td>
+
+
+        <td>
+          <div class="updown-unidades">
+
+            <a href="<?= base_url ?>carrito/up&indice=<?= $indice ?>" class="button">+</a>
+            <?= $elemento['unidades'] ?>
+            <a href="<?= base_url ?>carrito/down&indice=<?= $indice ?>" class="button button-red">-</a>
+          </div>
+
+        </td>
+
+        <td>
+          <a href="<?= base_url ?>carrito/remove&indice=<?= $indice ?>" class="button button-carrito button-red">Eliminar Producto</a>
+        </td>
 
 
       </tr>
@@ -54,6 +65,6 @@
 
 <?php else : ?>
 
-  <h1>El Carrito Esta Vacio Añade Algun Elemento</h1>
+  <h1>El Carrito Esta Vacio Añade Algun Producto</h1>
 
 <?php endif; ?>

@@ -16,7 +16,6 @@ class carritocontroller
     if (isset($_SESSION['carrito'])) {
 
       $carritos = $_SESSION['carrito'];
-    
     }
 
     require_once 'views/carritos/index.php';
@@ -52,27 +51,27 @@ class carritocontroller
 
 
     //cantidad inicial al añadir un producto al carrito
-      if (!isset($contador) || $contador == 0) {
+    if (!isset($contador) || $contador == 0) {
 
-        //Conseguir producto
-        $producto = new producto();
-        $producto->setid($producto_id);
-        $producto = $producto->getone();
+      //Conseguir producto
+      $producto = new producto();
+      $producto->setid($producto_id);
+      $producto = $producto->getone();
 
 
 
-        if (is_object($producto)) {
+      if (is_object($producto)) {
 
-          $_SESSION['carrito'][] = array(
+        $_SESSION['carrito'][] = array(
 
-            "id_producto" => $producto->id,
-            "precio" => $producto->precio,
-            "unidades" => 1,
-            "Producto" => $producto
+          "id_producto" => $producto->id,
+          "precio" => $producto->precio,
+          "unidades" => 1,
+          "Producto" => $producto
 
-          );
-         }
+        );
       }
+    }
 
 
     header("location:" . base_url . 'carrito/index');
@@ -82,16 +81,14 @@ class carritocontroller
   public function remove()
   {
 
-    if(isset($_GET['indice'])) {
-      
+    if (isset($_GET['indice'])) {
+
       $indice = $_GET['indice'];
 
       unset($_SESSION['carrito'][$indice]);
     }
 
     header("location:" . base_url . 'carrito/index');
-
-
   }
 
 
@@ -103,10 +100,43 @@ class carritocontroller
     header("location:" . base_url . 'carrito/index');
   }
 
-  public function delete(){
 
+  public function up()
+  {
+
+    if (isset($_GET['indice'])) {
+      $indice = $_GET['indice'];
+
+
+        $_SESSION['carrito'][$indice]['unidades']++;
+
+     
+  
+    }
+
+    header("location:" . base_url . 'carrito/index');
 
 
   }
+
+  public function down()
+  {
+
+    if (isset($_GET['indice'])) {
+
+      $indice = $_GET['indice'];
+
+        $_SESSION['carrito'][$indice]['unidades']--;
+
+        if ($_SESSION['carrito'][$indice]['unidades'] == 0) {
+          
+          unset($_SESSION['carrito'][$indice]);
+        }
+      
+    }
+    header("location:" . base_url . 'carrito/index');
+
+  }
+
 
 }
