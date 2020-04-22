@@ -1,16 +1,6 @@
 
 <?php   if(isset($_SESSION['identify'])): ?> 
 
-  <?php  if(isset($_SESSION['pedido']) && $_SESSION['pedido'] == 'complete' ):?>
-    <h4 class="alert_green"><strong>Pedido Confirmado</strong></h4>
-
-<?php elseif(isset($_SESSION['pedido']) && $_SESSION['pedido'] == 'faild'):?>
-
-    <h4 class="alert_red"><strong>Pedido Fallido</strong></h4>
-<?php endif;?>
-    
-<?php helpers::delete_session('pedido') ?>
-
 
          <h1>Pedidos</h1>
   

@@ -123,6 +123,20 @@ class pedido
         return $respuesta;
     }
 
+    public function getallByUser(){
+
+    $consulta  = $this->DB->query("SELECT * FROM pedidos WHERE usuario_id={$this->getusuario_id()} ORDER BY id DESC");
+
+        $respuesta = false;
+          
+        if($consulta){
+
+            $respuesta = $consulta;
+        }
+
+        return $respuesta;
+    }
+
 
     public function getone(){
         
@@ -143,7 +157,7 @@ class pedido
     public function getoneBYuser(){
  
         $sql = "SELECT p.id , p.costo from pedidos p "
-             ."WHERE p.usuario_id = {$this->getusuario_id()} ORDER BY id DESC";
+             ."WHERE p.usuario_id = {$this->getusuario_id()} ORDER BY id DESC  LIMIT 1  ";
 
         $consulta  = $this->DB->query($sql);
         $pedido = $consulta->fetch_object();
@@ -159,11 +173,10 @@ class pedido
 
     }
 
-    public function getproductoBypedido(){
+    public function getproductoBypedido($id){
 
-        $sql = "SELECT p.nombre , p.descripcion FROM lineas_pedidos lp "
-             ."INNER JOIN productos p ON lp.producto_id = p.id "
-             ."WHERE lp.pedido_id = {$this->getid()} ORDER BY id DESC";
+        $sql = "SELECT p.* , pl.unidades from lineas_pedidos pl "
+        ."INNER JOIN productos p ON pl.producto_id = p.id WHERE pl.pedido_id = {$id}";
 
             $consulta = $this->DB->query($sql);
 
@@ -187,7 +200,7 @@ class pedido
 
         $sql = "INSERT INTO pedidos(id,usuario_id,provincia,localidad,direccion,costo,estado,fecha_registro,hora)
                 VALUES(NULL,{$this->getusuario_id()},'{$this->getprovincia()}','{$this->getlocalidad()}','{$this->getdireccion()}',
-                {$this->getcosto()},'{$this->getestado()}',CURDATE(),CURTIME() )";
+                {$this->getcosto()},'confirm',CURDATE(),CURTIME() )";
         $resultado  = $this->DB->query($sql);
       
 
@@ -230,7 +243,20 @@ class pedido
         return $save;
     }
 
+    public function edit(){
 
+        $sql = "UPDATE pedidos SET  estado = '{$this->getestado()}' WHERE id = {$this->getid()}";
+        $resultado  = $this->DB->query($sql);
+
+        $save = false;
+        if($resultado){  
+
+            $save = true;
+        }
+
+        return $save;
+
+    }
 
 
 }
