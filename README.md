@@ -3,11 +3,9 @@
 Proyecto Personal De POO
 
 ## Comenzando 🚀
-Tienda Online POO
+EL proyecto se Trata de un tienda compra online
 
-EL proyecto Se Trata de un tienda compra online
 ### Pre-requisitos 📋
-
 Servidor Web  
 PHP7
 
