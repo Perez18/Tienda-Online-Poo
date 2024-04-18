@@ -2,7 +2,7 @@
 
 #Activar mod_rewrite
 RewriteEngine On
-ErrorDocument 404 http://localhost/proyecto%20poo/error2
+ErrorDocument 404 http://localhost:83/Tienda-Online-Poo/error2
 
 
 
